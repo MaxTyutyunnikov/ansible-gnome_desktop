@@ -1,0 +1,22 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: vagrant
+platforms:
+  - name: ubuntu-focal
+    box: generic/ubuntu2004
+    provider: virtualbox
+    memory: 1024
+  - name: centos-8
+    box: centos/8
+    provider: virtualbox
+    memory: 1024
+provisioner:
+  name: ansible
+verifier:
+  name: testinfra
+lint: |
+  yamllint .
+  ansible-lint
+  flake8

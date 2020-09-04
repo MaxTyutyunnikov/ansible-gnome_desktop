@@ -1,0 +1,4 @@
+---
+gnome_dependencies:
+  - python3-psutil
+  - dconf

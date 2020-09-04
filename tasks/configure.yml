@@ -1,0 +1,59 @@
+---
+- name: GNOME Desktop - Set 24h time layout
+  dconf:
+    key: "/org/gnome/desktop/interface/clock-format"
+    value: "'24h'"
+  when: gnome_topbar_time_24h
+
+- name: GNOME Desktop - Enable/Disable seconds
+  dconf:
+    key: "/org/gnome/desktop/interface/clock-show-seconds"
+    value: "'{{ gnome_topbar_time_seconds }}'"
+
+- name: GNOME Desktop - Show/hide weekday
+  dconf:
+    key: "/org/gnome/desktop/interface/clock-show-weekday"
+    value: "'{{ gnome_topbar_show_weekday }}'"
+
+- name: GNOME Desktop - Show/hide battery percentage
+  dconf:
+    key: "/org/gnome/desktop/interface/show-battery-percentage"
+    value: "'{{ gnome_battery_percentage }}'"
+
+- name: GNOME Desktop - Enable/Disable animiations
+  dconf:
+    key: "/org/gnome/desktop/interface/enable-animations"
+    value: "'{{ gnome_shell_animations }}'"
+
+- name: GNOME Desktop - Enable/Disable hot-corners
+  dconf:
+    key: "/org/gnome/desktop/interface/enable-hot-corners"
+    value: "'{{ gnome_shell_hotcorners }}'"
+
+- name: GNOME Desktop - Enable/Disable minimize/maximize buttons
+  dconf:
+    key: "/org/gnome/desktop/wm/preferences/button-layout"
+    value: "{{ gnome_wm_buttons }}"
+
+- name: GNOME Desktop - Enable/Disable ambient light sensor
+  dconf:
+    key: "/org/gnome/settings-daemon/plugins/power/ambient-enabled"
+    value: "'{{ gnome_ambient_light }}'"
+
+- name: GNOME Desktop - Enable/Disable natural scrolling (on notebook)
+  dconf:
+    key: "/org/gnome/desktop/peripherals/touchpad/natural-scroll"
+    value: "'{{ gnome_mouse_natural_scrolling }}'"
+
+- name: GNOME Desktop - Enable/Disable showing desktop shortcut
+  dconf:
+    key: "/org/gnome/desktop/wm/keybindings/show-desktop"
+    value: "['<Super>d']"
+  when: gnome_desktop_shortcut
+
+- name: GNOME Desktop - Additional settings
+  dconf:
+    key: "{{ item.setting }}"
+    value: "{{ item.value }}"
+  loop: "{{ gnome_additional_settings }}"
+  when: gnome_additional_settings is defined

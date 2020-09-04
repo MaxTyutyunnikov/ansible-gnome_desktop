@@ -1,0 +1,9 @@
+---
+- name: Include variables
+  include_vars: "{{ ansible_os_family | regex_replace(' ', '_') | lower }}.yml"
+
+- include_tasks: "prepare_{{ ansible_os_family | regex_replace(' ', '_') | lower }}.yml"
+  tags: prepare
+
+- include_tasks: configure.yml
+  tags: configure

@@ -1,0 +1,25 @@
+---
+galaxy_info:
+  role_name: gnome-desktop
+  author: Christian Stankowic
+  description: Configures the GNOME 3 desktop
+
+  # If the issue tracker for your role is not on github, uncomment the
+  # next line and provide a value
+  # issue_tracker_url: http://example.com/issue/tracker
+
+  license: Apache-2.0
+  min_ansible_version: 2.4
+
+  platforms:
+    - name: EL
+    - name: ubuntu
+    - name: debian
+
+  galaxy_tags:
+    - gnome
+    - gnome3
+    - desktop
+    - dconf
+
+dependencies: []

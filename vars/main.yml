@@ -1,0 +1,25 @@
+---
+#  top bar settings
+gnome_topbar_time_24h: true
+gnome_topbar_time_seconds: false
+gnome_topbar_show_weekday: true
+gnome_battery_percentage: false
+
+# shell settings
+gnome_shell_animations: true
+gnome_shell_hotcorners: true
+
+# window manager settings
+gnome_wm_buttons: "'appmenu:minimize,maximize,close'"
+
+# hardware settings
+gnome_ambient_light: true
+
+# mouse/keyboard settings
+gnome_mouse_natural_scrolling: true
+gnome_desktop_shortcut: true
+
+# additional settings
+# gnome_additional_settings:
+#   - setting: "/org/gnome/desktop/privacy/report-technical-problems"
+#     value: "false"

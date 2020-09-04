@@ -1,0 +1,5 @@
+---
+gnome_dependencies:
+  - python3-psutil
+  - dconf-cli
+  - dconf-service
