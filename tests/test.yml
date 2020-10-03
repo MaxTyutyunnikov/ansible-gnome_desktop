@@ -2,4 +2,4 @@
 - hosts: localhost
   become: false
   roles:
-    - gnome-desktop
+    - ansible-gnome-desktop
