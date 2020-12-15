@@ -1,6 +1,6 @@
-[![Build Status](https://travis-ci.org/stdevel/ansible-gnome-desktop.svg?branch=master)](https://travis-ci.org/stdevel/ansible-gnome-desktop)
+[![Build Status](https://travis-ci.org/stdevel/ansible-gnome_desktop.svg?branch=master)](https://travis-ci.org/stdevel/ansible-gnome_desktop)
 
-# gnome-desktop
+# gnome_desktop
 
 A brief description of the role goes here.
 
@@ -63,7 +63,7 @@ Refer to the following example:
 ```yaml
     - hosts: servers
       roles:
-         - stdevel.gnome-desktop
+         - stdevel.gnome_desktop
 ```
 
 Set variables if required, e.g.:
@@ -72,7 +72,7 @@ Set variables if required, e.g.:
 ---
 - hosts: uyuni.giertz.loc
   roles:
-    - role: stdevel.gnome-desktop
+    - role: stdevel.gnome_desktop
       gnome_additional_settings:
         - setting: "/org/gnome/desktop/privacy/report-technical-problems"
           value: "false"

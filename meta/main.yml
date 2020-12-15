@@ -1,6 +1,6 @@
 ---
 galaxy_info:
-  role_name: gnome-desktop
+  role_name: gnome_desktop
   author: Christian Stankowic
   description: Configures the GNOME 3 desktop
 

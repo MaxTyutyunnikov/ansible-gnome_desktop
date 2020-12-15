@@ -9,7 +9,7 @@
         cacheable: true
       when: ansible_distribution == 'Pop!_OS'
   roles:
-    - role: ansible-gnome-desktop
+    - role: ansible-gnome_desktop
       gnome_shell_animations: false
       gnome_shell_hotcorners: false
       gnome_ambient_light: false
