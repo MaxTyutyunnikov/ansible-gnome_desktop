@@ -8,42 +8,42 @@
 - name: GNOME Desktop - Enable/Disable seconds
   dconf:
     key: "/org/gnome/desktop/interface/clock-show-seconds"
-    value: "'{{ gnome_topbar_time_seconds }}'"
+    value: "'{{ gnome_topbar_time_seconds | lower }}'"
 
 - name: GNOME Desktop - Show/hide weekday
   dconf:
     key: "/org/gnome/desktop/interface/clock-show-weekday"
-    value: "'{{ gnome_topbar_show_weekday }}'"
+    value: "'{{ gnome_topbar_show_weekday  | lower }}'"
 
 - name: GNOME Desktop - Show/hide battery percentage
   dconf:
     key: "/org/gnome/desktop/interface/show-battery-percentage"
-    value: "'{{ gnome_battery_percentage }}'"
+    value: "'{{ gnome_battery_percentage | lower }}'"
 
 - name: GNOME Desktop - Enable/Disable animiations
   dconf:
     key: "/org/gnome/desktop/interface/enable-animations"
-    value: "'{{ gnome_shell_animations }}'"
+    value: "{{ gnome_shell_animations | lower }}"
 
 - name: GNOME Desktop - Enable/Disable hot-corners
   dconf:
     key: "/org/gnome/desktop/interface/enable-hot-corners"
-    value: "'{{ gnome_shell_hotcorners }}'"
+    value: "'{{ gnome_shell_hotcorners | lower }}'"
 
 - name: GNOME Desktop - Enable/Disable minimize/maximize buttons
   dconf:
     key: "/org/gnome/desktop/wm/preferences/button-layout"
-    value: "{{ gnome_wm_buttons }}"
+    value: "{{ gnome_wm_buttons | lower }}"
 
 - name: GNOME Desktop - Enable/Disable ambient light sensor
   dconf:
     key: "/org/gnome/settings-daemon/plugins/power/ambient-enabled"
-    value: "'{{ gnome_ambient_light }}'"
+    value: "'{{ gnome_ambient_light | lower }}'"
 
 - name: GNOME Desktop - Enable/Disable natural scrolling (on notebook)
   dconf:
     key: "/org/gnome/desktop/peripherals/touchpad/natural-scroll"
-    value: "'{{ gnome_mouse_natural_scrolling }}'"
+    value: "'{{ gnome_mouse_natural_scrolling | lower }}'"
 
 - name: GNOME Desktop - Enable/Disable showing desktop shortcut
   dconf:
