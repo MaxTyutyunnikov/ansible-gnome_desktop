@@ -1,10 +1,14 @@
 """Role testing files using testinfra."""
 
 
-def test_hosts_file(host):
-    """Validate /etc/hosts file."""
-    f = host.file("/etc/hosts")
-
-    assert f.exists
-    assert f.user == "root"
-    assert f.group == "root"
+def test_dconf_settings(host):
+    """
+    Tests some dconf settings
+    """
+    settings = [
+        "/org/gnome/desktop/interface/enable-animations",
+        "/org/gnome/desktop/interface/enable-hot-corners"
+    ]
+    for setting in settings:
+        result = host.run("dconf read %s" % setting).stdout.strip()
+        assert 'true' in result
