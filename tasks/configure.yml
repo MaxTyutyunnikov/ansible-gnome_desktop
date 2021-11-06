@@ -54,6 +54,7 @@
 - name: GNOME Desktop - Additional settings
   dconf:
     key: "{{ item.setting }}"
-    value: "{{ item.value }}"
+    value: "{{ item.value | default(omit) }}"
+    state: "{{ item.state | default('present') }}"
   loop: "{{ gnome_additional_settings }}"
   when: gnome_additional_settings is defined

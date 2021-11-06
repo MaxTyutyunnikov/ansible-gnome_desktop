@@ -2,7 +2,7 @@
 
 # gnome_desktop
 
-A brief description of the role goes here.
+Configures the GNOME 3+ desktop.
 
 ## Requirements
 
@@ -78,6 +78,10 @@ Set variables if required, e.g.:
           value: "false"
         - setting: "/org/gnome/desktop/privacy/send-software-usage-stats"
           value: "false"
+        - setting: "/org/gnome/desktop/wm/keybindings/minimize"
+          value: ['']
+        - setting: "/dummy/setting"
+          state: absent
 ```
 
 ## License
