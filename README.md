@@ -52,6 +52,23 @@ This role will not install the GNOME desktop itself - it should be pre-installed
 | -------- | ------- | ----------- |
 | `gnome_additional_settings` | `true` | Additional setting/value pairs (*as list*) |
 
+### Installing extensions
+
+In order to automate installing extensions, you'll need to find:
+
+- the appropriate download URL for your GNOME Shell version
+- the extension UUID
+
+The easiest way to find these information is to browse [https://extensions.gnome.org/](the GNOME extension catalog), manually select the appropriate version and copy the download URL. Extract the archive once and read the `uuid` value from `metadata.json`.
+
+See the following YAML code for [a Podman extension](https://extensions.gnome.org/extension/1500/containers/) for GNOME 41:
+
+```yaml
+gnome_extensions:
+  - name: containers@royg
+    url: https://extensions.gnome.org/extension-data/containersroyg.v19.shell-extension.zip
+```
+
 ## Dependencies
 
 No dependencies.
@@ -83,6 +100,9 @@ Set variables if required, e.g.:
           value: ['']
         - setting: "/dummy/setting"
           state: absent
+      gnome_extensions:
+        - name: containers@royg
+          url: https://extensions.gnome.org/extension-data/containersroyg.v19.shell-extension.zip
 ```
 
 ## License
