@@ -1,8 +1,9 @@
 ---
 galaxy_info:
+  namespace: stdevel
   role_name: gnome_desktop
   author: Christian Stankowic
-  description: Configures the GNOME 3 desktop
+  description: Configures the GNOME 3+ desktop
 
   # If the issue tracker for your role is not on github, uncomment the
   # next line and provide a value
@@ -15,10 +16,12 @@ galaxy_info:
     - name: EL
     - name: ubuntu
     - name: debian
+    - name: fedora
 
   galaxy_tags:
     - gnome
     - gnome3
+    - gnome4
     - desktop
     - dconf
 
