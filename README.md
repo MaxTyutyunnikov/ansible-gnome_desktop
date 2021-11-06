@@ -61,9 +61,10 @@ No dependencies.
 Refer to the following example:
 
 ```yaml
-    - hosts: servers
-      roles:
-         - stdevel.gnome_desktop
+---
+- hosts: servers
+  roles:
+      - stdevel.gnome_desktop
 ```
 
 Set variables if required, e.g.:

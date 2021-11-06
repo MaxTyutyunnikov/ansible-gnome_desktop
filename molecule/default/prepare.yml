@@ -1,0 +1,29 @@
+---
+- name: Install GNOME desktop
+  hosts: ubuntu-focal
+  become: true
+  tasks:
+    - name: Install packages
+      apt:
+        name: ubuntu-desktop
+        update_cache: true
+
+- name: Install GNOME desktop
+  hosts:
+    - almalinux-8
+    - fedora-35
+  become: true
+  tasks:
+    - name: Install package group
+      yum:
+        name: "@GNOME"
+
+- name: Configure systemd
+  hosts: all
+  become: true
+  tasks:
+    - name: Set default target
+      shell: systemctl set-default graphical.target
+
+    - name: Start target
+      shell: systemctl isolate graphical.target

@@ -8,8 +8,12 @@ platforms:
     box: generic/ubuntu2004
     provider: virtualbox
     memory: 1024
-  - name: centos-8
-    box: centos/8
+  - name: almalinux-8
+    box: almalinux/8
+    provider: virtualbox
+    memory: 1024
+  - name: fedora-35
+    box: fedora/35-cloud-base
     provider: virtualbox
     memory: 1024
 provisioner:
