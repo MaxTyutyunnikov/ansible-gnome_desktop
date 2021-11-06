@@ -59,7 +59,7 @@ In order to automate installing extensions, you'll need to find:
 - the appropriate download URL for your GNOME Shell version
 - the extension UUID
 
-The easiest way to find these information is to browse [https://extensions.gnome.org/](the GNOME extension catalog), manually select the appropriate version and copy the download URL. Extract the archive once and read the `uuid` value from `metadata.json`.
+The easiest way to find these information is to browse [the GNOME extension catalog](https://extensions.gnome.org/]), manually select the appropriate version and copy the download URL. Extract the archive once and read the `uuid` value from `metadata.json`.
 
 See the following YAML code for [a Podman extension](https://extensions.gnome.org/extension/1500/containers/) for GNOME 41:
 
