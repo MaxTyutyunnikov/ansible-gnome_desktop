@@ -26,3 +26,4 @@ galaxy_info:
     - dconf
 
 dependencies: []
+allow_duplicates: true

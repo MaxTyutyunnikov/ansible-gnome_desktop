@@ -1,0 +1,17 @@
+- name: GNOME Desktop - Additional settings
+  dconf:
+    key: "{{ item.setting }}"
+    value: "{{ item.value | default(omit) }}"
+    state: "{{ item.state | default('present') }}"
+  register: result
+  failed_when: result.rc|d(0) not in [ 0, 1 ]
+
+- name: GNOME Desktop - Additional settings | CLI
+  command: >-
+    dconf \
+    "{{ d.get((item.state | default('present') | lower )) }}" \
+    "{{ item.setting }}" \
+    "{{ '' if ((item.state | default('present') | lower) == 'absent') else (item.value | default(omit)) }}"
+  vars:
+    d: "{{ { 'present': 'write', 'read': 'read', 'ansent': 'write' } }}"
+  when: gnome_desktop_shortcut and (result.rc|d(0) in [ 1 ])
