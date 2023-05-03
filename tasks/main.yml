@@ -7,3 +7,5 @@
 
 - include_tasks: configure.yml
   tags: configure
+
+- include_tasks: gtk.yml

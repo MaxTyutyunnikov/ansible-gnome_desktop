@@ -1,0 +1,24 @@
+---
+- name: Creating GTK+ 3 system wide settings
+  file: path=/etc/gtk-3.0 state=directory mode=0755
+
+- name: Configuring GTK+ 3 theme
+  template: src=gtk-3.0/settings.ini.j2 dest=/etc/gtk-3.0/settings.ini mode=0644
+
+- name: Creating GTK+ 4 system wide settings
+  file: path=/etc/gtk-4.0 state=directory mode=0755
+
+- name: Configuring GTK+ 4 theme
+  template: src=gtk-4.0/settings.ini.j2 dest=/etc/gtk-4.0/settings.ini mode=0644
+
+- name: Creating GTK+ 3 system wide settings
+  file: path=~/.config/gtk-3.0 state=directory mode=0755
+
+- name: Configuring GTK+ 3 theme
+  template: src=gtk-3.0/settings.ini.j2 dest=~/.config/gtk-3.0/settings.ini mode=0644
+
+- name: Creating GTK+ 4 system wide settings
+  file: path=~/.config/gtk-4.0 state=directory mode=0755
+
+- name: Configuring GTK+ 4 theme
+  template: src=gtk-4.0/settings.ini.j2 dest=~/.config/gtk-4.0/settings.ini mode=0644
