@@ -22,7 +22,7 @@
   failed_when: result.rc|d(0) not in [ 0, 1 ]
 
 - name: GNOME Desktop - Enable/Disable seconds | CLI
-  command: dconf write /org/gnome/desktop/interface/clock-show-seconds "{{ gnome_topbar_time_seconds | lower }}"
+  command: dbus-launch dconf write /org/gnome/desktop/interface/clock-show-seconds "{{ gnome_topbar_time_seconds | lower }}"
   when: (result.rc|d(0) in [ 1 ])
 
 ############################################################################################################
@@ -35,7 +35,7 @@
   failed_when: result.rc|d(0) not in [ 0, 1 ]
 
 - name: GNOME Desktop - Show/hide weekday | CLI
-  command: dconf write /org/gnome/desktop/interface/clock-show-weekday "{{ gnome_topbar_show_weekday  | lower }}"
+  command: dbus-launch dconf write /org/gnome/desktop/interface/clock-show-weekday "{{ gnome_topbar_show_weekday  | lower }}"
   when: (result.rc|d(0) in [ 1 ])
 
 ############################################################################################################
@@ -48,7 +48,7 @@
   failed_when: result.rc|d(0) not in [ 0, 1 ]
 
 - name: GNOME Desktop - Show/hide battery percentage | CLI
-  command: dconf write /org/gnome/desktop/interface/show-battery-percentage "{{ gnome_battery_percentage | lower }}"
+  command: dbus-launch dconf write /org/gnome/desktop/interface/show-battery-percentage "{{ gnome_battery_percentage | lower }}"
   when: (result.rc|d(0) in [ 1 ])
 
 ############################################################################################################
@@ -61,7 +61,7 @@
   failed_when: result.rc|d(0) not in [ 0, 1 ]
 
 - name: GNOME Desktop - Enable/Disable animiations | CLI
-  command: dconf write /org/gnome/desktop/interface/enable-animations "{{ gnome_shell_animations | lower }}"
+  command: dbus-launch dconf write /org/gnome/desktop/interface/enable-animations "{{ gnome_shell_animations | lower }}"
   when: (result.rc|d(0) in [ 1 ])
 
 ############################################################################################################
@@ -74,7 +74,7 @@
   failed_when: result.rc|d(0) not in [ 0, 1 ]
 
 - name: GNOME Desktop - Enable/Disable hot-corners | CLI
-  command: dconf write /org/gnome/desktop/interface/enable-hot-corners "{{ gnome_shell_hotcorners | lower }}"
+  command: dbus-launch dconf write /org/gnome/desktop/interface/enable-hot-corners "{{ gnome_shell_hotcorners | lower }}"
   when: (result.rc|d(0) in [ 1 ])
 
 ############################################################################################################
@@ -87,7 +87,7 @@
   failed_when: result.rc|d(0) not in [ 0, 1 ]
 
 - name: GNOME Desktop - Enable/Disable minimize/maximize buttons | CLI
-  command: dconf write /org/gnome/desktop/wm/preferences/button-layout "{{ gnome_wm_buttons | lower }}"
+  command: dbus-launch dconf write /org/gnome/desktop/wm/preferences/button-layout "{{ gnome_wm_buttons | lower }}"
   when: (result.rc|d(0) in [ 1 ])
 
 ############################################################################################################
@@ -100,7 +100,7 @@
   failed_when: result.rc|d(0) not in [ 0, 1 ]
 
 - name: GNOME Desktop - Enable/Disable ambient light sensor | CLI
-  command: dconf write /org/gnome/settings-daemon/plugins/power/ambient-enabled "{{ gnome_ambient_light | lower }}"
+  command: dbus-launch dconf write /org/gnome/settings-daemon/plugins/power/ambient-enabled "{{ gnome_ambient_light | lower }}"
   when: (result.rc|d(0) in [ 1 ])
 
 ############################################################################################################
@@ -113,7 +113,7 @@
   failed_when: result.rc|d(0) not in [ 0, 1 ]
 
 - name: GNOME Desktop - Enable/Disable natural scrolling (on notebook)
-  command: dconf write /org/gnome/desktop/peripherals/touchpad/natural-scroll "{{ gnome_mouse_natural_scrolling | lower }}"
+  command: dbus-launch dconf write /org/gnome/desktop/peripherals/touchpad/natural-scroll "{{ gnome_mouse_natural_scrolling | lower }}"
   when: (result.rc|d(0) in [ 1 ])
 
 ############################################################################################################
@@ -127,7 +127,7 @@
   failed_when: result.rc|d(0) not in [ 0, 1 ]
 
 - name: GNOME Desktop - Enable/Disable showing desktop shortcut | CLI
-  command: dconf write /org/gnome/desktop/wm/keybindings/show-desktop "['<Super>d']"
+  command: dbus-launch dconf write /org/gnome/desktop/wm/keybindings/show-desktop "['<Super>d']"
   when: gnome_desktop_shortcut and (result.rc|d(0) in [ 1 ])
 
 ############################################################################################################
@@ -142,6 +142,8 @@
   when: gnome_additional_settings is defined
 
 ############################################################################################################
+
+- debug: var=ansible_user_id
 
 - name: Create extension directory
   file:
@@ -171,5 +173,10 @@
       unarchive:
         src: "~/.local/share/gnome-shell/extensions/{{ item.url | basename }}"
         dest: "~/.local/share/gnome-shell/extensions/{{ item.name }}"
+        remote_src: yes
+      loop: "{{ gnome_extensions }}"
+
+    - name: enable
+      command: gnome-extensions enable {{ item.name }}
       loop: "{{ gnome_extensions }}"
   when: gnome_extensions is defined
