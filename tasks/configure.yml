@@ -176,7 +176,23 @@
         remote_src: yes
       loop: "{{ gnome_extensions }}"
 
+    - name: id
+      command: id
+      register: result
+    - debug: var=result
+
     - name: enable
-      command: gnome-extensions enable {{ item.name }}
+####      shell: dbus-launch gnome-extensions enable {{ item.name }}
+      command: dbus-launch gnome-extensions enable {{ item.name }}
+####      command: |
+####           dbus-launch gdbus call --session \
+####           --dest org.gnome.Shell.Extensions \
+####           --object-path /org/gnome/Shell/Extensions \
+####           --method org.gnome.Shell.Extensions.InstallRemoteExtension \
+####           {{ item.name }}
       loop: "{{ gnome_extensions }}"
+      register: result
+    - debug: var=result
+####    - pause:
+
   when: gnome_extensions is defined
