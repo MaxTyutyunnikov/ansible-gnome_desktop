@@ -3,3 +3,5 @@
   become: true
   apt:
     name: "{{ gnome_dependencies }}"
+  become: yes
+  become_user: root
